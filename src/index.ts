@@ -1,5 +1,5 @@
 import express from "express";
-import messagesRouter from "./routes/messages-router";
+import messageRouter from "./routes/messages-router";
 
 import cors from "cors";
 const PORT = process.env.PORT || 5000;
@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-app.use("/", messagesRouter);
+app.use("/", messageRouter);
 
 app.use((req, res) => {
   res.status(404);

@@ -8,9 +8,9 @@ const pairs: Array<{ operator: string; client: string }> = [];
 const ops = [...operators];
 let lastClient = "";
 
-const messagesRouter = express.Router();
+const messageRouter = express.Router();
 
-messagesRouter.post("/messages", async (req, res) => {
+messageRouter.post("/message", async (req, res) => {
   const { body, from } = req.body as { body: string; from: string };
   const receivedFrom = from.split("@")[0];
   lastClient = receivedFrom;
@@ -98,9 +98,9 @@ messagesRouter.post("/messages", async (req, res) => {
   res.status(200).send("OK");
 });
 
-messagesRouter.get("/messages", (req, res) => {
+messageRouter.get("/message", (req, res) => {
   console.log({ message: req.body });
   res.status(200).send("OK");
 });
 
-export default messagesRouter;
+export default messageRouter;
