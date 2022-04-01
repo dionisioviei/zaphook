@@ -51,14 +51,6 @@ messageRouter.post("/message", async (req, res) => {
         return res.status(200).send("OK");
       }
 
-      // Check if is talking to a client and relay the message
-      if (ops[opsIndex].active) {
-        await axios.post(`${VENOM_API}/api/send-message`, {
-          number: ops[opsIndex].talkingTo,
-          message: `*${ops[opsIndex].name}:* ${body}`,
-        });
-      }
-
       if (body === "bot:end" && ops[opsIndex].active === true) {
         await axios.post(`${VENOM_API}/api/send-message`, {
           number: ops[opsIndex].talkingTo,
@@ -77,6 +69,15 @@ messageRouter.post("/message", async (req, res) => {
         };
         return res.status(200).send("OK");
       }
+
+      // Check if is talking to a client and relay the message
+      if (ops[opsIndex].active) {
+        await axios.post(`${VENOM_API}/api/send-message`, {
+          number: ops[opsIndex].talkingTo,
+          message: `*${ops[opsIndex].name}:* ${body}`,
+        });
+      }
+
       return res.status(200).send("OK");
     }
 
