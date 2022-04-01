@@ -13,7 +13,9 @@ const messageRouter = express.Router();
 messageRouter.post("/message", async (req, res) => {
   const { body, from } = req.body as { body: string; from: string };
   const receivedFrom = from.split("@")[0];
-  lastClient = receivedFrom;
+  if (!ops.find((op) => op.number === receivedFrom)) {
+    lastClient = receivedFrom;
+  }
 
   try {
     // Check if is an operator
@@ -70,7 +72,7 @@ messageRouter.post("/message", async (req, res) => {
           talkingTo: "",
         };
       }
-      res.status(200).send("OK");
+      return res.status(200).send("OK");
     }
 
     // Check if is a client and is already talking to an operator
@@ -81,7 +83,7 @@ messageRouter.post("/message", async (req, res) => {
         number: ops[opsIndex].number,
         message: `*[BOT]:* *'${receivedFrom}'* enviou: ${body}`,
       });
-      res.status(200).send("OK");
+      return res.status(200).send("OK");
     }
 
     // Send message to all operators
@@ -96,16 +98,16 @@ messageRouter.post("/message", async (req, res) => {
     const responses = await Promise.all(promises);
     console.log({ responses, message: req.body });
 
-    res.status(200).send("OK");
+    return res.status(200).send("OK");
   } catch (error: unknown) {
     console.log(error);
-    res.status(200).send("OK");
+    return res.status(200).send("OK");
   }
 });
 
 messageRouter.get("/message", (req, res) => {
   console.log({ message: req.body });
-  res.status(200).send("OK");
+  return res.status(200).send("OK");
 });
 
 export default messageRouter;
