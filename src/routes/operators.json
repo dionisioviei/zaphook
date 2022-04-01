@@ -1,0 +1,22 @@
+{
+  "operators": [
+      {
+        "name": "Dionisio Vieira",
+        "number": "5511992242283",
+        "active": false,
+        "talkingTo": ""
+      },
+      {
+        "name": "Janio Vieira",
+        "number": "5577988737218",
+        "active": false,
+        "talkingTo": ""
+      },
+      {
+        "name": "Adriano Vieira",
+        "number": "5511943147949",
+        "active": false,
+        "talkingTo": ""
+      }
+  ]
+}
