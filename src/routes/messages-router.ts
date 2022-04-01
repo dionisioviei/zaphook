@@ -48,6 +48,7 @@ messageRouter.post("/message", async (req, res) => {
           number: lastClient,
           message: `*${ops[opsIndex].name}:* Olá! Meu nome é ${ops[opsIndex].name} e a partir de agora irei dar continuidade ao seu atendimento`,
         });
+        return res.status(200).send("OK");
       }
 
       // Check if is talking to a client and relay the message
@@ -74,6 +75,7 @@ messageRouter.post("/message", async (req, res) => {
           active: false,
           talkingTo: "",
         };
+        return res.status(200).send("OK");
       }
       return res.status(200).send("OK");
     }
