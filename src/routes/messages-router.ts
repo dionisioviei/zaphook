@@ -13,9 +13,12 @@ const messageRouter = express.Router();
 messageRouter.post("/message", async (req, res) => {
   const { body, from } = req.body as { body: string; from: string };
   const receivedFrom = from.split("@")[0];
-  if (!ops.find((op) => op.number === receivedFrom)) {
+  const isOperator = ops.find((op) => op.number === receivedFrom);
+  if (!isOperator) {
     lastClient = receivedFrom;
   }
+
+  console.log(`Mensagem de: ${receivedFrom} | ${body}`, isOperator);
 
   try {
     // Check if is an operator
