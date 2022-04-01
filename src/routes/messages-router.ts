@@ -18,7 +18,7 @@ messageRouter.post("/message", async (req, res) => {
     lastClient = receivedFrom;
   }
 
-  console.log(`Mensagem de: ${receivedFrom} | ${body}`, isOperator);
+  console.log(`Mensagem de: ${receivedFrom} | ${body}`, isOperator, lastClient);
 
   try {
     // Check if is an operator
